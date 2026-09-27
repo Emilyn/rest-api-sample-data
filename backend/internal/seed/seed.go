@@ -9,10 +9,9 @@ import (
 	"rest-api-sample-data/backend/internal/store"
 )
 
-// dbJSONPath points at the sample data file one level up from the backend
-// module (the repo root), since the seed only needs to run once to populate
-// data/endpoints.json.
-const dbJSONPath = "../db.json"
+// dbJSONPath points at the sample data file, since the seed only needs to
+// run once to populate data/endpoints.json.
+const dbJSONPath = "db.json"
 
 // Run preloads a public /companies endpoint from db.json the first time the
 // server starts, without clobbering endpoints the user has already edited.

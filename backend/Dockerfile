@@ -1,14 +1,14 @@
 FROM golang:1.26-alpine AS build
-WORKDIR /src/backend
-COPY backend/go.mod backend/go.sum ./
+WORKDIR /src
+COPY go.mod go.sum ./
 RUN go mod download
-COPY backend/. .
+COPY . .
 RUN CGO_ENABLED=0 go build -o /out/server .
 
 FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
-WORKDIR /app/backend
+WORKDIR /app
 COPY --from=build /out/server ./server
-COPY db.json /app/db.json
+COPY db.json ./db.json
 
 CMD ["./server"]
